@@ -1,7 +1,5 @@
-from operator import ne
 import sys
 import json
-from tkinter import NO
 def addTask(data, task):
     count=data["count"]
     newTask={
@@ -21,6 +19,21 @@ def updateTask(data, id, newTask):
     json.dump(data, f, indent=4)
     print(f"Task with id={id} has been updated to: '{newTask}'")
 
+def deleteTask(data, id):
+    deleted=data.pop(id)
+    if deleted is None:
+        print(f"No task with id={id}!")
+    else:
+        print(f"Task with id={id} deleted.")
+        data["count"]-=1
+    f=open("tasks.json", "w")
+    json.dump(data, f, indent=4)
+
+def deleteAll(data):
+    data={"count": 0}
+    f=open("tasks.json", "w")
+    json.dump(data, f, indent=4)
+    print("All tasks deleted.")
 #main()
 f=open("tasks.json", "r")
 data=json.load(f)
