@@ -1,8 +1,6 @@
 import sys
 import json
-def addTask(task):
-    f=open("tasks.json", "r")
-    data=json.load(f)
+def addTask(data, task):
     count=data["count"]
     newTask={
                 "task": task,
@@ -10,7 +8,13 @@ def addTask(task):
             }
     data[count+1]=newTask
     data["count"]+=1
-    f.close()
     f=open("tasks.json", "w")
     json.dump(data, f, indent=4)
     f.close()
+    print(f"Added task: '{task}' | task id: {count+1}")
+
+    
+
+#main()
+f=open("tasks.json", "r")
+data=json.load(f)
