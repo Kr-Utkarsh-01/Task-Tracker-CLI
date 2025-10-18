@@ -20,7 +20,7 @@ def updateTask(data, id, newTask):
     print(f"Task with id={id} has been updated to: '{newTask}'")
 
 def deleteTask(data, id):
-    deleted=data.pop(id)
+    deleted=data.pop(id, None)
     if deleted is None:
         print(f"No task with id={id}!")
     else:
