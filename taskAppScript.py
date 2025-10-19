@@ -77,6 +77,8 @@ f=open("tasks.json", "r")
 data=json.load(f)
 if len(sys.argv)==1 or sys.argv[1]=="help":
     listCmds()
+
+#Adding tasks:
 elif sys.argv[1]=="add":
     if len(sys.argv)<3 or len(sys.argv)>4:
         print("Invalid Arguments! Use 'help' to list commands.")
@@ -84,3 +86,20 @@ elif sys.argv[1]=="add":
         addTask(data, sys.argv[2])
     else:
         addTask(data, sys.argv[2], sys.argv[3])
+
+#Updating tasks:
+elif sys.argv[1]=="update":
+    if len(sys.argv)!=4:
+        print("Invalid Arguments! Use 'help' to list commands.")
+    else:
+        updateTask(data, sys.argv[2],sys.argv[3])
+
+#Deleting tasks:
+elif sys.argv[1]=="delete":
+    if len(sys.argv)!=3:
+        print("Invalid Arguments! Use 'help' to list commands.")
+    else:
+        deleteTask(data, sys.argv[2])
+
+
+# deleteAll(data)
