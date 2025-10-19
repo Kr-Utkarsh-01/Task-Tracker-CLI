@@ -1,7 +1,7 @@
 from datetime import datetime
 import sys
 import json
-def addTask(data, task, desc):
+def addTask(data, task, desc=""):
     newTask={
                 "task": task,
                 "status": "To-do",
@@ -69,6 +69,18 @@ def listTask(data, arg="All"):
             if data[i]["status"]=="In-progress":
                 print(f"Id: {i}\nTask: {data[i]["task"]}\nStatus: {data[i]["status"]}\nDescription: {data[i]["desc"]}\nCreated: {data[i]["created"]}\nModified: {data[i]["modified"]}\n")
 
+def listCmds():
+    pass
+
 #main()
 f=open("tasks.json", "r")
 data=json.load(f)
+if len(sys.argv)==1 or sys.argv[1]=="help":
+    listCmds()
+elif sys.argv[1]=="add":
+    if len(sys.argv)<3 or len(sys.argv)>4:
+        print("Invalid Arguments! Use 'help' to list commands.")
+    elif len(sys.argv)==3:
+        addTask(data, sys.argv[2])
+    else:
+        addTask(data, sys.argv[2], sys.argv[3])

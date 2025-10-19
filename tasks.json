@@ -1,3 +1,20 @@
 {
-    "currIds": []
+    "currIds": [
+        "1",
+        "2"
+    ],
+    "1": {
+        "task": "This is a task",
+        "status": "To-do",
+        "desc": "",
+        "created": "2025-10-19 23:24:57.903591",
+        "modified": "2025-10-19 23:24:57.903616"
+    },
+    "2": {
+        "task": "This is another task",
+        "status": "To-do",
+        "desc": "This should come here",
+        "created": "2025-10-19 23:25:23.974816",
+        "modified": "2025-10-19 23:25:23.974911"
+    }
 }
