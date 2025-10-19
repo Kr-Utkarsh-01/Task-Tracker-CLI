@@ -70,11 +70,38 @@ def listTask(data, arg="All"):
                 print(f"Id: {i}\nTask: {data[i]["task"]}\nStatus: {data[i]["status"]}\nDescription: {data[i]["desc"]}\nCreated: {data[i]["created"]}\nModified: {data[i]["modified"]}\n")
 
 def listCmds():
-    pass
+    print("""
+Available Commands:
+
+Task Management:
+  add <task> [description]         - Add a new task with an optional description.
+  update <id> <new_task>           - Update the task description for a given task ID.
+  delete <id>                      - Delete a task with the specified ID.
+  delete-all                       - Delete all tasks.
+
+Status Updates:
+  mark-to-do <id>                  - Mark the task status as 'To-do'.
+  mark-in-progress <id>           - Mark the task status as 'In-progress'.
+  mark-done <id>                   - Mark the task status as 'Done'.
+
+Task Listing:
+  list                             - List all tasks.
+  list todo                        - List tasks marked as 'To-do'.
+  list done                        - List tasks marked as 'Done'.
+  list in-progress                 - List tasks marked as 'In-progress'.
+
+Help:
+  help                             - Show this help message.
+
+Note: Task IDs are automatically assigned and are required for update, delete, or status change commands.
+""")
+
 
 #main()
 f=open("tasks.json", "r")
 data=json.load(f)
+
+#Trigger help
 if len(sys.argv)==1 or sys.argv[1]=="help":
     listCmds()
 
@@ -119,5 +146,7 @@ elif sys.argv[1]=="list":
         listTask(data, "todo")
     elif sys.argv[2]=="in-progress":
         listTask(data, "inprogress")
-        
-# deleteAll(data)
+
+#Reset tasks.json
+elif sys.argv[1] == "delete-all":
+    deleteAll(data)
