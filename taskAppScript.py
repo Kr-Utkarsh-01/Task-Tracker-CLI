@@ -1,9 +1,13 @@
+from datetime import datetime
 import sys
 import json
-def addTask(data, task):
+def addTask(data, task, desc):
     newTask={
                 "task": task,
-                "status": "To-do"
+                "status": "To-do",
+                "desc" : desc,
+                "created": str(datetime.now()),
+                "modified": str(datetime.now())
             }
     id="1"
     while True:
@@ -20,6 +24,7 @@ def addTask(data, task):
 
 def updateTask(data, id, newTask):
     data[id]["task"]=newTask
+    data[id]["modified"]=str(datetime.now())
     f=open("tasks.json", "w")
     json.dump(data, f, indent=4)
     print(f"Task with id={id} has been updated to: '{newTask}'")
@@ -42,6 +47,7 @@ def deleteAll(data):
 
 def updateStatus(data, id, newStatus):
     data[id]["status"]=newStatus
+    data[id]["modified"]=str(datetime.now())
     f=open("tasks.json", "w")
     json.dump(data, f, indent=4)
     print(f"Status of task '{data[id]["task"]}' with id={id} changed to '{newStatus}'")
@@ -49,19 +55,19 @@ def updateStatus(data, id, newStatus):
 def listTask(data, arg="All"):
     if arg=="All":
         for i in data["currIds"]:
-            print(f"Id: {i}\nTask: {data[i]["task"]}\nStatus: {data[i]["status"]}\n")
+            print(f"Id: {i}\nTask: {data[i]["task"]}\nStatus: {data[i]["status"]}\nDescription: {data[i]["desc"]}\nCreated: {data[i]["created"]}\nModified: {data[i]["modified"]}\n")
     elif arg=="done":
         for i in data["currIds"]:
             if data[i]["status"]=="Done":
-                print(f"Id: {i}\nTask: {data[i]["task"]}\nStatus: {data[i]["status"]}\n")
+                print(f"Id: {i}\nTask: {data[i]["task"]}\nStatus: {data[i]["status"]}\nDescription: {data[i]["desc"]}\nCreated: {data[i]["created"]}\nModified: {data[i]["modified"]}\n")
     elif arg=="todo":
         for i in data["currIds"]:
             if data[i]["status"]=="To-do":
-                print(f"Id: {i}\nTask: {data[i]["task"]}\nStatus: {data[i]["status"]}\n")
-    elif arg=="in-progress":
+                print(f"Id: {i}\nTask: {data[i]["task"]}\nStatus: {data[i]["status"]}\nDescription: {data[i]["desc"]}\nCreated: {data[i]["created"]}\nModified: {data[i]["modified"]}\n")
+    elif arg=="inprogress":
         for i in data["currIds"]:
             if data[i]["status"]=="In-progress":
-                print(f"Id: {i}\nTask: {data[i]["task"]}\nStatus: {data[i]["status"]}\n")
+                print(f"Id: {i}\nTask: {data[i]["task"]}\nStatus: {data[i]["status"]}\nDescription: {data[i]["desc"]}\nCreated: {data[i]["created"]}\nModified: {data[i]["modified"]}\n")
 
 #main()
 f=open("tasks.json", "r")
