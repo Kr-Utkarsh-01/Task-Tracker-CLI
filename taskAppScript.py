@@ -101,5 +101,23 @@ elif sys.argv[1]=="delete":
     else:
         deleteTask(data, sys.argv[2])
 
+#Updating Status:
+elif sys.argv[1]=="mark-in-progress":
+    updateStatus(data, sys.argv[2], "In-progress")
+elif sys.argv[1]=="mark-done":
+    updateStatus(data, sys.argv[2], "Done")
+elif sys.argv[1]=="mark-to-do":
+    updateStatus(data, sys.argv[2], "To-do")
 
+#List Tasks:
+elif sys.argv[1]=="list":
+    if len(sys.argv)==2:
+        listTask(data)
+    elif sys.argv[2]=="done":
+        listTask(data, "done")
+    elif sys.argv[2]=="todo":
+        listTask(data, "todo")
+    elif sys.argv[2]=="in-progress":
+        listTask(data, "inprogress")
+        
 # deleteAll(data)
