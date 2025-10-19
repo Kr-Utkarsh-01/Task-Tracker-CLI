@@ -1,4 +1,3 @@
-from operator import ne
 import sys
 import json
 def addTask(data, task):
@@ -47,11 +46,23 @@ def updateStatus(data, id, newStatus):
     json.dump(data, f, indent=4)
     print(f"Status of task '{data[id]["task"]}' with id={id} changed to '{newStatus}'")
     
-# def listTask(data, arg="All"):
-#     if arg=="All":
-        
+def listTask(data, arg="All"):
+    if arg=="All":
+        for i in data["currIds"]:
+            print(f"Id: {i}\nTask: {data[i]["task"]}\nStatus: {data[i]["status"]}\n")
+    elif arg=="done":
+        for i in data["currIds"]:
+            if data[i]["status"]=="Done":
+                print(f"Id: {i}\nTask: {data[i]["task"]}\nStatus: {data[i]["status"]}\n")
+    elif arg=="todo":
+        for i in data["currIds"]:
+            if data[i]["status"]=="To-do":
+                print(f"Id: {i}\nTask: {data[i]["task"]}\nStatus: {data[i]["status"]}\n")
+    elif arg=="in-progress":
+        for i in data["currIds"]:
+            if data[i]["status"]=="In-progress":
+                print(f"Id: {i}\nTask: {data[i]["task"]}\nStatus: {data[i]["status"]}\n")
 
-#listing left
 #main()
 f=open("tasks.json", "r")
 data=json.load(f)
