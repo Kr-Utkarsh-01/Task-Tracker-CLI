@@ -1,4 +1,5 @@
 from datetime import datetime
+import os
 import sys
 import json
 def addTask(data, task, desc=""):
@@ -98,8 +99,11 @@ Note: Task IDs are automatically assigned and are required for update, delete, o
 
 
 #main()
-f=open("tasks.json", "r")
-data=json.load(f)
+if os.path.exists("tasks.json"):
+    with open("tasks.json", "r") as f:
+        data = json.load(f)
+else:
+    data = {"currIds": []}
 
 #Trigger help
 if len(sys.argv)==1 or sys.argv[1]=="help":
