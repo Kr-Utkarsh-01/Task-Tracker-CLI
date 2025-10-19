@@ -1,12 +1,3 @@
 {
-    "currIds": [
-        "1"
-    ],
-    "1": {
-        "task": "This is another task",
-        "status": "In-progress",
-        "desc": "This should come here",
-        "created": "2025-10-20 00:15:52.513163",
-        "modified": "2025-10-20 00:16:19.098501"
-    }
+    "currIds": []
 }
